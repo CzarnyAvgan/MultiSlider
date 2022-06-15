@@ -177,6 +177,16 @@ open class MultiSlider: UIControl {
     /// minimal distance to keep between thumbs (half a thumb by default)
     @IBInspectable public dynamic var distanceBetweenThumbs: CGFloat = -1
     @IBInspectable public dynamic var margin: CGFloat = 32
+    
+    @IBInspectable public dynamic var customTintColor: UIColor {
+        get { trackView.backgroundColor ?? .black }
+        set {
+            trackView.backgroundColor = newValue
+            minimumView.tintColor = newValue
+            maximumView.tintColor = newValue
+        }
+    }
+    
     @IBInspectable public dynamic var keepsDistanceBetweenThumbs: Bool {
         get { return distanceBetweenThumbs != 0 }
         set {
@@ -229,17 +239,7 @@ open class MultiSlider: UIControl {
     lazy var defaultThumbImage: UIImage? = .circle()
     var selectionFeedbackGenerator = AvailableHapticFeedback()
 
-    // MARK: - Overrides
-
-    override open var tintColor: UIColor! { // swiftlint:disable:this implicitly_unwrapped_optional
-        get { trackView.backgroundColor }
-        set {
-            trackView.backgroundColor = newValue
-            minimumView.tintColor = newValue
-            maximumView.tintColor = newValue
-        }
-    }
-
+    // MARK: - Override
     override open var intrinsicContentSize: CGSize {
         let thumbSize = (thumbImage ?? defaultThumbImage)?.size ?? CGSize(width: margin, height: margin)
         switch orientation {
