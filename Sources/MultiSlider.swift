@@ -176,7 +176,7 @@ open class MultiSlider: UIControl {
 
     /// minimal distance to keep between thumbs (half a thumb by default)
     @IBInspectable public dynamic var distanceBetweenThumbs: CGFloat = -1
-
+    @IBInspectable public dynamic var margin: CGFloat = 32
     @IBInspectable public dynamic var keepsDistanceBetweenThumbs: Bool {
         get { return distanceBetweenThumbs != 0 }
         set {
@@ -224,7 +224,7 @@ open class MultiSlider: UIControl {
 
     let slideView = UIView()
     let panGestureView = UIView()
-    let margin: CGFloat = 32
+    
     var isSettingValue = false
     lazy var defaultThumbImage: UIImage? = .circle()
     var selectionFeedbackGenerator = AvailableHapticFeedback()
